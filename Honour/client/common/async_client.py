@@ -4,8 +4,9 @@
 # @Author    :Andy
 # @FileName  :async_client.py
 # @Software: PyCharm
-import json
 import asyncio
+
+from Honour.client.common.config import *
 
 
 class AsyncClient(object):
@@ -16,10 +17,21 @@ class AsyncClient(object):
 
     async def c2s(self, message):
         """ c2s接口 """
-        reader, writer = await asyncio.open_connection(self.ip, self.port)
-        data = json.dumps(message).encode()
-        writer.write(data)
-        await writer.drain()
+        try:
+            reader, writer = await asyncio.open_connection(self.ip, self.port)
+            data = json.dumps(message).encode()
+            writer.write(data)
+            await writer.drain()
 
-        message = await reader.read(self.MAX_BYTES)
-        return json.loads(message.decode())
+            message = await reader.read(self.MAX_BYTES)
+            return json.loads(message.decode())
+        except:
+            return
+
+class GameClient:
+    def __init__(self, ip, port):
+        self.ip = ip
+        self.port = port
+        self.MAX_BYTES = config.get()['server']['max_bytes']
+        self.client = AsyncClient(self.ip, self.port, self.MAX_BYTES)
+

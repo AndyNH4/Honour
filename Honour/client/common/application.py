@@ -10,26 +10,44 @@ from PySide6.QtWidgets import QApplication
 
 from Honour.client.common.setting import *
 from Honour.client.common.share.const import *
-from Honour.client.components.asyncio_client import *
+from Honour.client.common.async_client import *
 
 
-class Application(QApplication):
+class HApplication(QApplication):
     """ Singleton application """
     def __init__(self):
-        super(Application, self).__init__()
+        super().__init__(sys.argv)
 
-        self.client = HonourClient()
+        self.client = AsyncClient(config.get()['server']['ip'],
+                                  config.get()['server']['port'],
+                                  config.get()['server']['max_bytes'])
 
 
-    def check(self):
-        result = self.client.request({'type': C2S_CHECK, 'status': C2S_STATUS, 'version': VERSION})
-        if result['code'] == S2C_NORMAL:
-            if result['type'] == C2S_CHECK:
-                if result['status'] == S2C_STATUS:
-                    pass
+    async def check(self):
+        result = await self.client.c2s({'type': C2S_CHECK, 'status': C2S_STATUS, 'version': VERSION})
+        try:
+            if result['code'] == S2C_NORMAL:
+                if result['type'] == C2S_CHECK:
+                    if result['status'] == S2C_STATUS:
+                        # 验证通过
+                        return True
 
+                    else:
+                        return result['info']
                 else:
-                    print(result['info'])
-                    sys.exit()
+                    return False
+            else:
+                return False
+        except KeyError:
+            return False
+
+    async def run(self):
+        """ run """
+        check = await self.check()
+        if check:
+            # 验证通过
+            pass
+
         else:
-            print('服务器异常')
+            print(check)
+            sys.exit(0)

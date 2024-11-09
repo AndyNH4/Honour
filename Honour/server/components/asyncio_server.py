@@ -4,6 +4,8 @@
 # @Author    :Andy
 # @FileName  :asyncio_server.py
 # @Software: PyCharm
+from importlib.metadata import pass_none
+
 import aiomysql
 
 from Honour.server.common.const import *
@@ -25,27 +27,41 @@ class AsyncioServer(ServerBase):
             {'id': AccountItem,}
         """
         self.account = {}
-        sql = "select id, account, nickname from account"
+        sql = "select id, account, nickname from account;"
         result = asyncio.run(self.select(sql))
         for item in result:
-            self.account[item[0]] = item[1]
+            self.account[item[0]] = AccountItem(item[0], item[1], FREE, item[2])
 
+    # 初始化数据库
     async def load(self):
+        """ load """
         self.conn = await aiomysql.connect(host='localhost', port=3306, user='root', password='root', db='honour')
         self.cursor = await self.conn.cursor()
 
+    # 执行mysql数据库查询
     async def select(self, sql):
+        """ select """
         try:
             await self.cursor.execute(sql)
-            return self.cursor.fetchall()
+            return self.cursor.fetchall()._result
         except Exception as e:
             pass
 
+    # 关闭服务器
+    async def close(self):
+        """ close """
+        self.conn.close()
+
+    # 处理客户端请求
     async def handle_client(self, reader, writer):
+        """ handle client """
         data = await reader.read(self.config.get()['server']['MAX_BYTES'])
         msg = json.loads(data.decode())
         s2cmsg = {}
-        ## handle
+
+        # handle
+
+        # 验证信息
         if msg['type'] == C2S_CHECK:
             if msg['status'] == C2S_STATUS:
                 if msg['version'] == '':
@@ -72,6 +88,7 @@ class AsyncioServer(ServerBase):
                 }
 
         else:
+            # 验证数字签名
             if msg['sign'] == 123:
                 if msg['type'] == C2S_LOGIN:
                     pass
@@ -82,9 +99,58 @@ class AsyncioServer(ServerBase):
         writer.write(json.dumps(s2cmsg))
         await writer.drain()
 
+    # 命令提示符
     def shell(self):
         """ shell """
-        pass
+        while True:
+            message = input()
+            # 帮助
+            if message == 'help':
+                pass
+
+            # 关于
+            elif message == 'about':
+                pass
+
+            # 关闭命令提示符
+            elif message == 'quit':
+                break
+
+            # 关闭服务器
+            elif message == 'stop':
+                asyncio.run(self.close())
+                break
+
+            # 重启服务器
+            elif message == 'reboot':
+                pass
+
+            # 查询服务器数据
+            elif message[:5] == 'select':
+                pass
+
+            # 具体命令帮助
+            elif message[:3] == 'help':
+                if message == 'help':
+                    pass
+
+                elif message == 'about':
+                    pass
+
+                elif message == 'stop':
+                    pass
+
+                elif message == 'reboot':
+                    pass
+
+                elif message == 'select':
+                    pass
+
+                else:
+                    pass
+
+            else:
+                print('位置命令')
 
 
 class AccountItem(object):
