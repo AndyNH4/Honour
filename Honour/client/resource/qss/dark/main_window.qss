@@ -1,0 +1,39 @@
+#subMainWindow {
+    background-color: transparent;
+}
+
+#mainWindow[useAcrylic=false] {
+    background-color: #2b2b2b;
+}
+
+#mainWindow[useAcrylic=true] {
+    background-color: transparent;
+}
+
+#subStackWidget {
+    background-color: rgb(39, 39, 39);
+}
+
+#myMusicInterface {
+    background-color: rgb(39, 39, 39);
+}
+
+QLabel {
+    background-color: transparent;
+}
+
+/*隐藏下箭头*/
+QScrollBar::add-line {
+    background: transparent;
+}
+
+QScrollBar::handle {
+    background: rgb(139, 139, 139);
+    border: 2px solid rgb(139, 139, 139);
+    border-radius: 1px;
+}
+
+QScrollArea {
+    background: transparent;
+    border: none;
+}

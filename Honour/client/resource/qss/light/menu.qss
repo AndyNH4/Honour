@@ -1,0 +1,153 @@
+/*设置菜单样式*/
+QMenu {
+    background-color: rgb(232, 232, 232);
+    font-size: 18px;
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    padding: 5px 0px 16px 0px;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+QMenu::right-arrow {
+    width: 16px;
+    height: 16px;
+    right: 16px;
+    border-image: url(:/images/menu/ChevronRight_black.png);
+
+}
+
+QMenu::separator {
+    height: 1px;
+    background: rgba(0, 0, 0, 104);
+    margin-right: 13px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 13;
+}
+
+QMenu::item {
+    padding: 7px 20px 7px 13px;
+}
+
+QMenu::item:selected {
+    border-width: 1px;
+    border-color: rgb(212, 212, 212);
+    background: rgba(0, 0, 0, 25);
+    color: black;
+}
+
+
+/*排序模式菜单样式*/
+QMenu#sortModeMenu {
+    font-size: 16px;
+    height: 114px;
+    border: 1px solid rgb(41, 41, 41);
+    border-bottom: none;
+    padding-top: 1px;
+    border-radius: 0px;
+}
+
+QMenu#sortModeMenu[modeNumber='4'] {
+    height: 152px;
+}
+
+QMenu#sortModeMenu[modeNumber='2'] {
+    height: 76px;
+}
+
+QMenu#sortModeMenu::item {
+    height: 14px;
+    color: black;
+    padding: 11px 85px 11px 12px;
+    margin: 0px 1px 1px 1px;
+}
+
+QMenu#sortModeMenu::item:default {
+    background-color: rgb(168, 239, 255);
+}
+
+QMenu#sortModeMenu::item:selected {
+    background: rgb(218, 218, 218);
+}
+
+QMenu#sortModeMenu::item:default:selected {
+    background: rgb(136, 233, 255);
+}
+
+
+/* 系统托盘菜单 */
+QMenu#systemTrayMenu {
+    background-color: white;
+    width: 300px;
+}
+
+QMenu#systemTrayMenu::separator {
+    height: 1px;
+    background: rgb(237, 237, 239);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+QMenu#systemTrayMenu::icon {
+    padding: 0px 0px 0px 27px;
+}
+
+QMenu#systemTrayMenu::item {
+    padding: 7px 20px 7px 25px;
+}
+
+RoundMenu {
+    background-color: transparent;
+    border: none;
+}
+
+MenuActionListWidget {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 9px;
+    background-color: rgb(242, 242, 242);
+    outline: none;
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+}
+
+MenuActionListWidget::item {
+    padding-left: 13px;
+    padding-right: 13px;
+    border: none;
+    background-color: transparent;
+}
+
+MenuActionListWidget::item:disbaled {
+    padding-left: 13px;
+    padding-right: 13px;
+    border: none;
+    color: black;
+}
+
+MenuActionListWidget::item:hover {
+    background-color: rgba(0, 0, 0, 16);
+}
+
+MenuActionListWidget::item:selected {
+    background-color: rgba(0, 0, 0, 25);
+    color: black;
+}
+
+MenuActionListWidget::item:selected:active {
+    background-color: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#darkMenu>MenuActionListWidget {
+    color: white;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(20, 20, 20);
+}
+
+#darkMenu>MenuActionListWidget::item:selected {
+    background: rgb(54, 54, 54);
+}
+
+#darkMenu>MenuActionListWidget::item:selected {
+    background: rgb(77, 77, 77);
+}

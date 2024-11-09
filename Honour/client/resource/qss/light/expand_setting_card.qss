@@ -1,0 +1,149 @@
+ExpandSettingCard {
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 7px;
+    background-color: rgb(252, 252, 252);
+}
+
+#view {
+    background: transparent;
+}
+
+ExpandSettingCard[isExpand=false]>SettingCard {
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 7px;
+    background-color: rgb(255, 255, 255);
+}
+
+ExpandSettingCard[isExpand=true]>SettingCard {
+    border: 1px solid rgb(230, 230, 230);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: rgb(255, 255, 255);
+}
+
+QLabel {
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    color: black;
+    padding: 0;
+    background: transparent;
+}
+
+QLabel#contentLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: rgb(96, 96, 96);
+    padding: 0;
+}
+
+FolderItem>QLabel {
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+}
+
+/* QPushButton */
+QPushButton {
+    border: 1px solid rgb(238, 239, 238);
+    border-radius: 5px;
+    border-bottom: 1px solid rgb(212, 213, 212);
+    padding: 6px 15px 6px 45px;
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    color: black;
+    background-color: rgb(254, 254, 254);
+}
+
+QPushButton:hover {
+    background-color: rgb(251, 251, 251);
+}
+
+QPushButton:pressed {
+    background-color: rgb(252, 252, 252);
+    border-bottom: 1px solid rgb(238, 239, 238);
+    color: rgba(0, 0, 0, 0.63);
+}
+
+
+/* Tool button */
+ToolButton {
+    border: 1px solid rgb(238, 239, 238);
+    border-radius: 5px;
+    border-bottom: 1px solid rgb(212, 213, 212);
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    color: black;
+    background-color: rgb(254, 254, 254);
+}
+
+ToolButton:hover {
+    background-color: rgb(251, 251, 251);
+}
+
+ToolButton:pressed {
+    background-color: rgb(252, 252, 252);
+    border-bottom: 1px solid rgb(238, 239, 238);
+}
+
+/* 单选框 */
+QRadioButton {
+    min-height: 30px;
+    max-height: 30px;
+    background-color: transparent;
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+}
+
+QRadioButton::indicator {
+    width: 22px;
+    height: 22px;
+    border-radius: 13px;
+    border: 2px solid #999999;
+    background-color: rgba(0, 0, 0, 5);
+    margin-right: 5px;
+}
+
+QRadioButton::indicator:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+QRadioButton::indicator:pressed {
+    border: 2px solid #bbbbbb;
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 rgb(255, 255, 255),
+        stop:0.5 rgb(255, 255, 255),
+        stop:0.55 rgb(225, 224, 223),
+        stop:1 rgb(225, 224, 223));
+}
+
+QRadioButton::indicator:checked {
+    height: 26px;
+    width: 26px;
+    border: none;
+    border-radius: 13px;
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 rgb(255, 255, 255),
+        stop:0.5 rgb(255, 255, 255),
+        stop:0.55 rgb(72, 210, 242),
+        stop:1 rgb(72, 210, 242));
+}
+
+QRadioButton::indicator:checked:hover {
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 rgb(255, 255, 255),
+        stop:0.6 rgb(255, 255, 255),
+        stop:0.65 rgb(72, 210, 242),
+        stop:1 rgb(72, 210, 242));
+}
+
+QRadioButton::indicator:checked:pressed {
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 rgb(255, 255, 255),
+        stop:0.5 rgb(255, 255, 255),
+        stop:0.55 rgb(72, 210, 242),
+        stop:1 rgb(72, 210, 242));
+}
+
+QRadioButton:disabled {
+    color: rgba(0, 0, 0, 110);
+}
+
+QRadioButton::indicator:disabled {
+    border: 2px solid #bbbbbb;
+    background-color: rgba(0, 0, 0, 0);
+}
